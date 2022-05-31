@@ -11,9 +11,8 @@ set(LIBRARY_OUTPUT_PATH
 file(GLOB_RECURSE SRC *.c *.cpp)
 file(GLOB_RECURSE HEADERS *.h)
 
-set(EQUILIBRIUM_SOURCES ${SRC} ${HEADERS})
-
-add_library(${PROJECT_NAME} STATIC ${EQUILIBRIUM_SOURCES})
+set(SOURCES ${SRC} ${HEADERS})
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 target_include_directories(
   ${PROJECT_NAME}
