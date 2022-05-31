@@ -1,4 +1,4 @@
-project(app-lib LANGUAGES C CXX)
+project(app-code LANGUAGES C CXX)
 
 file(GLOB_RECURSE SRC *.c *.cpp)
 file(GLOB_RECURSE HEADERS *.h)

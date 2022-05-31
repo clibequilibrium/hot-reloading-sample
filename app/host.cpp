@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
   cr_plugin ctx;
 
   // the full path to the live-reloadable application
-  cr_plugin_open(ctx, "f:/Documents/C/hot-reload/build/app/bin/Windows/Debug/libapp.dll");
+  cr_plugin_open(ctx, "libapp-lib.dll");
 
   // call the update function at any frequency matters to you, this will give
   // the real application a chance to run
