@@ -15,5 +15,4 @@ endif()
 set(PROJECT_WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(lib)
-add_subdirectory(lib-host)
 add_subdirectory(app)
