@@ -15,5 +15,7 @@ set(SOURCES ${SRC} ${HEADERS})
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 target_include_directories(
-  ${PROJECT_NAME}
-  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+  ${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+                         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/cimgui/)
+
+target_link_libraries(${PROJECT_NAME} cimgui ws2_32)
