@@ -11,8 +11,10 @@ int main(int argc, char *argv[]) {
 
   // call the update function at any frequency matters to you, this will give
   // the real application a chance to run
-  while (!cr_plugin_update(ctx)) {
+  while (true) {
     // do anything you need to do on host side (ie. windowing and input stuff?)
+
+    cr_plugin_update(ctx);
   }
 
   // at the end do not forget to cleanup the plugin context

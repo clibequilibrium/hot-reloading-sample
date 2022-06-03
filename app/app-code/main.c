@@ -7,7 +7,19 @@
 
 static unsigned int CR_STATE version = 1;
 static bool CR_STATE initialized = false;
-static ecs_world_t* world;
+static ecs_world_t CR_STATE *world = NULL;
+
+void Move(ecs_iter_t *it) {
+  Position *p = ecs_term(it, Position, 1);
+  Velocity *v = ecs_term(it, Velocity, 2);
+
+  for (int i = 0; i < it->count; i++) {
+    p[i].x += v[i].x;
+    p[i].y += v[i].y;
+
+    fprintf(stdout, "Change this text: %d \n", p[i].x);
+  }
+}
 
 CR_EXPORT int cr_main(struct cr_plugin *ctx, enum cr_op operation) {
   assert(ctx);
@@ -20,11 +32,6 @@ CR_EXPORT int cr_main(struct cr_plugin *ctx, enum cr_op operation) {
     fprintf(stdout, "A rollback happened due to failure: %x!\n", ctx->failure);
   }
   version = ctx->version;
-
-  if (operation == CR_UNLOAD) {
-    ecs_quit(world);
-    initialized = false;
-  }
 
   if (!initialized) {
 
@@ -42,6 +49,7 @@ CR_EXPORT int cr_main(struct cr_plugin *ctx, enum cr_op operation) {
     initialized = true;
   }
 
+  ecs_set_os_api_impl();
   ecs_progress(world, 0);
 
   return 0;

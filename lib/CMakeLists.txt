@@ -16,6 +16,7 @@ add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 target_include_directories(
   ${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-                         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/cimgui/)
+                         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/cimgui
+                         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/flecs/)
 
-target_link_libraries(${PROJECT_NAME} cimgui ws2_32)
+target_link_libraries(${PROJECT_NAME} flecs)
