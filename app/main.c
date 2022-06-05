@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <cr.h>
-#include <lib.h>
+#include <engine.h>
 
 static unsigned int CR_STATE version = 1;
 static bool CR_STATE initialized = false;
@@ -17,7 +17,7 @@ void Move(ecs_iter_t *it) {
     p[i].x += v[i].x;
     p[i].y += v[i].y;
 
-    fprintf(stdout, "Change this text: %d \n", p[i].x);
+    fprintf(stdout, "Change this textttt: %d \n", p[i].x);
   }
 }
 
