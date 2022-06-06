@@ -1,5 +1,6 @@
 #include "cimgui_base.h"
 #include "imgui_dockspace_system.h"
+#include <bgfx/c99/bgfx.h>
 
 static void DrawDockSpace(ecs_iter_t *it) {
   static bool open = true;
@@ -107,6 +108,8 @@ static void DrawDockSpace(ecs_iter_t *it) {
 
     igEndMenuBar();
   }
+
+  bgfx_get_caps();
 
   igEnd();
 }
