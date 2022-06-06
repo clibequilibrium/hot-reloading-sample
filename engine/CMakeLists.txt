@@ -23,4 +23,4 @@ target_include_directories(
          ${CMAKE_CURRENT_SOURCE_DIR}/components
          ${CMAKE_CURRENT_SOURCE_DIR}/systems)
 
-target_link_libraries(${PROJECT_NAME} flecs bgfx bx SDL2)
+target_link_libraries(${PROJECT_NAME} flecs bgfx bx cimgui SDL2)
