@@ -1,8 +1,9 @@
-#ifndef LIB_H
-#define LIB_H
+#ifndef ENGINE_H
+#define ENGINE_H
 
-#include <flecs.h>
-#include <engine_defines.h>
+#include <base.h>
+#include <systems/bgfx_system.h>
+#include <systems/sdl_system.h>
 
 typedef struct {
   int x, y;
