@@ -15,9 +15,12 @@ set(SOURCES ${SRC} ${HEADERS})
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_include_directories(
-  ${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-                         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/cimgui
-                         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/flecs/
-                         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/bgfx/)
+  ${PROJECT_NAME}
+  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/cimgui
+         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/flecs/
+         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/bgfx/
+         ${CMAKE_CURRENT_SOURCE_DIR}/components
+         ${CMAKE_CURRENT_SOURCE_DIR}/systems)
 
 target_link_libraries(${PROJECT_NAME} flecs bgfx bx SDL2)

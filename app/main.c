@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <cr.h>
 #include <engine.h>
+#include <editor.h>
 #include <components/gui.h>
 
 static unsigned int CR_STATE version = 1;
@@ -28,9 +29,11 @@ CR_EXPORT int cr_main(struct cr_plugin *ctx, enum cr_op operation) {
 
     ECS_IMPORT(world, SdlSystem);
     ECS_IMPORT(world, BgfxSystem);
+    ECS_IMPORT(world, ImguiBgfxSdlSystem);
+    ECS_IMPORT(world, ImguiDockspaceSystem);
 
     ecs_entity_t app = ecs_set_name(world, 0, "App");
-    ecs_set(world, app, AppWindow, {maximized : false});
+    ecs_set(world, app, AppWindow, {maximized : true});
     ecs_set(world, app, Renderer, {type : Direct3D11});
 
     initialized = true;

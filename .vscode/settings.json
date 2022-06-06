@@ -20,6 +20,8 @@
         "__tuple": "c",
         "cstddef": "c",
         "limits": "c",
-        "random": "c"
+        "random": "c",
+        "editor_base.h": "c",
+        "base.h": "c"
     }
 }
