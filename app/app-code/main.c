@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <cr.h>
-#include <lib.h>
+#include <engine.h>
 #include <editor.h>
 
 static unsigned int CR_STATE version = 1;

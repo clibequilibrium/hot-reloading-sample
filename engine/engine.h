@@ -1,5 +1,5 @@
-#ifndef LIB_H
-#define LIB_H
+#ifndef ENGINE_H
+#define ENGINE_H
 
 #include <flecs.h>
 
