@@ -2,26 +2,6 @@
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
         "*.sc": "glsl",
-        "flecs.h": "c",
-        "sdl_syswm.h": "c",
-        "engine_defines.h": "c",
-        "sample_system.h": "c",
-        "array": "c",
-        "chrono": "c",
-        "compare": "c",
-        "functional": "c",
-        "ratio": "c",
-        "tuple": "c",
-        "type_traits": "c",
-        "utility": "c",
-        "variant": "c",
-        "__hash_table": "c",
-        "__tree": "c",
-        "__tuple": "c",
-        "cstddef": "c",
-        "limits": "c",
-        "random": "c",
-        "editor_base.h": "c",
-        "base.h": "c"
+        "flecs.h": "c"
     }
 }

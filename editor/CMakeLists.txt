@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(engine LANGUAGES C CXX)
+project(editor LANGUAGES C CXX)
 
 set(CMAKE_C_STANDARD 11)
 
@@ -11,7 +11,6 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 target_include_directories(
   ${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
-                         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/cimgui
-                         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/flecs/)
+  ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/cr/)
 
-target_link_libraries(${PROJECT_NAME} flecs)
+target_link_libraries(${PROJECT_NAME} engine)
