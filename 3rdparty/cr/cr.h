@@ -321,6 +321,8 @@ With all these information you'll be able to decide which is better to your use 
 
 [@pixelherodev](https://github.com/pixelherodev)
 
+[Alexander](https://github.com/clibequilibrium)
+
 ### Contributing
 
 We welcome *ALL* contributions, there is no minor things to contribute with, even one letter typo fixes are welcome.
@@ -1103,7 +1105,37 @@ static cr_plugin_main_func cr_so_symbol(so_handle handle) {
     return new_main;
 }
 
+#ifdef __MINGW32__
+#include <setjmp.h>
+#include <signal.h>
+
+static jmp_buf env;
+static void cr_signal_handler(int sig) {
+    __builtin_longjmp(env, 1);
+}
+
+static cr_failure cr_signal_to_failure(int sig) {
+    switch (sig) {
+    case 0:
+        return CR_NONE;
+    case SIGILL:
+        return CR_ILLEGAL;
+    case SIGSEGV:
+        return CR_SEGFAULT;
+    case SIGABRT:
+        return CR_ABORT;
+    }
+    return static_cast<cr_failure>(CR_OTHER + sig);
+}
+#endif
+
 static void cr_plat_init() {
+#ifdef __MINGW32__
+    CR_TRACE
+    signal(SIGILL, cr_signal_handler);
+    signal(SIGSEGV, cr_signal_handler);
+    signal(SIGABRT, cr_signal_handler);
+#endif
 }
 
 static int cr_seh_filter(cr_plugin &ctx, unsigned long seh) {
@@ -1138,15 +1170,26 @@ static int cr_plugin_main(cr_plugin &ctx, cr_op operation) {
     auto p = (cr_internal *)ctx.p;
 #ifndef __MINGW32__
     __try {
-#endif
         if (p->main) {
             return p->main(&ctx, operation);
         }
-#ifndef __MINGW32__
     } __except (cr_seh_filter(ctx, GetExceptionCode())) {
         return -1;
     }
+#else
+    if (int sig = __builtin_setjmp(env)) {
+        ctx.version = ctx.last_working_version;
+        ctx.failure = cr_signal_to_failure(sig);
+        CR_LOG("1 FAILURE: %d (CR: %d)\n", sig, ctx.failure);
+        return -1;
+    } else {
+        CR_ASSERT(p);
+        if (p->main) {
+            return p->main(&ctx, operation);
+        }
+    }
 #endif
+
     return -1;
 }
 
@@ -1903,6 +1946,10 @@ extern "C" int cr_plugin_update(cr_plugin &ctx, bool reloadCheck = true) {
         CR_LOG("1 ROLLBACK version was %d\n", ctx.version);
         cr_plugin_rollback(ctx);
         CR_LOG("1 ROLLBACK version is now %d\n", ctx.version);
+#ifdef __MINGW32__
+        cr_plat_init();
+#endif
+
     } else {
         if (reloadCheck) {
             cr_plugin_reload(ctx);

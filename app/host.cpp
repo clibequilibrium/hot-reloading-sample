@@ -5,6 +5,7 @@
 int main(int argc, char *argv[]) {
   // the host application should initalize a plugin with a context, a plugin
   cr_plugin ctx;
+  ctx.userdata = env;
 
   // the full path to the live-reloadable application
   cr_plugin_open(ctx, "libapp-code.dll");
@@ -12,8 +13,7 @@ int main(int argc, char *argv[]) {
   // call the update function at any frequency matters to you, this will give
   // the real application a chance to run
   while (true) {
-    // do anything you need to do on host side (ie. windowing and input stuff?)
-
+    // do anything you need to do on host side (ie. windowing and input stuff?
     cr_plugin_update(ctx);
   }
 

@@ -2,6 +2,10 @@
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
         "*.sc": "glsl",
-        "flecs.h": "c"
+        "flecs.h": "c",
+        "algorithm": "c",
+        "__bit_reference": "c",
+        "__locale": "c",
+        "cr.h": "c"
     }
 }

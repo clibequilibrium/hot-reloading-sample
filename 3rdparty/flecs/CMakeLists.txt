@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
 project(flecs)
-file(GLOB IMGUI_SOURCES flecs.c)
+file(GLOB IMGUI_SOURCES flecs.c flecs.h)
 
 add_library(flecs SHARED ${IMGUI_SOURCES})
 target_include_directories(flecs PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
